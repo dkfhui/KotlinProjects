@@ -22,6 +22,7 @@ fun div(x: Float, y: Float) = x / y
 fun random(to: Int, from: Int = 0) = Random().nextInt(to - from) + from
 fun dice() = Random().nextInt(6) + 1
 
+/* Performs a merge sort algorithm on arr */ 
 fun mergeSort(arr: IntArray): IntArray {
     if(arr.size <= 1)
     	return arr
