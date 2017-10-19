@@ -2,16 +2,11 @@ package ch02.ex1_1_HelloWorld
 import java.util.Random
 
 fun main(args: Array<String>) {
-    /*println(random(10))
-    println(dice())*/
     val arr: IntArray = IntArray(10, {random(10)})
     printArray(arr)
     val mergedArr = mergeSort(arr)
     printArray(mergedArr);
     print(binarySearch(mergedArr, 7, 0, mergedArr.size))
-    
-    //printArray(merge(intArrayOf(1, 3), intArrayOf(2, 4), 4))
-    //printArray(mergeSort(intArrayOf(1,3,2,4,1)))
 }
 
 fun sum(x: Int, y: Int) = x + y
@@ -28,7 +23,6 @@ fun mergeSort(arr: IntArray): IntArray {
     	return arr
     
     var middle: Int = arr.size / 2
-    //print("middle: $middle\n")
     var left: IntArray = arr.copyOf(middle)
     var right: IntArray = arr.copyOfRange(middle, arr.size)
     
@@ -38,48 +32,34 @@ fun mergeSort(arr: IntArray): IntArray {
     return(merge(left, right, left.size + right.size))
 }
 
+/* Merges two sorted integer arrays together and returns a sorted array */
 fun merge(left: IntArray, right: IntArray, length: Int): IntArray{
     var arr: IntArray = IntArray(length, {i->0})
     var leftIndex: Int = 0; var rightIndex: Int = 0; var arrIndex: Int = 0
     var lsize = left.size; var rsize = right.size
     
-    //print("left.size: $lsize\tright.size: $rsize\tlength:$length\n")
     while(leftIndex < left.size && rightIndex < right.size){
         var l = left[leftIndex]
         var r = right[rightIndex]
-        //print("$leftIndex\t$rightIndex\t$arrIndex\n")
-        //print("l: $l\tr: $r\n\n")
-        if(left[leftIndex] <= right[rightIndex]){
+        if(left[leftIndex] <= right[rightIndex])
             arr[arrIndex++] = left[leftIndex++]
-            //leftIndex++
-        }
-        else{
+        else
             arr[arrIndex++] = right[rightIndex++]
-            //rightIndex++
-        }
-        //arrIndex++
     }
-    //print("$leftIndex\t$rightIndex\t$arrIndex\n\n")
     
     if(leftIndex < left.size){    
-        for(i in leftIndex..left.size-1){
+        for(i in leftIndex..left.size-1)
             arr[arrIndex++] = left[leftIndex++]
-            /*arrIndex++
-            leftIndex++*/
-        }
     }
     if(rightIndex < right.size){
-        for(i in rightIndex..right.size-1){
-            //print("$leftIndex\t$rightIndex\t$arrIndex\n")
+        for(i in rightIndex..right.size-1)
             arr[arrIndex++] = right[rightIndex++]
-            /*arrIndex++
-            rightIndex++*/
-        }
     }
     
     return arr
 }
 
+/* Prints all the contents of an integer array */
 fun printArray(arr: IntArray){
     for(i in arr)
     	print("$i ")
@@ -94,6 +74,8 @@ fun test(){
     	println(a.copyOf(a.size/2)[i])
 }
 
+/* Performs a binary search on sorted integer array arr for query with left
+   denoting the leftmost bound and right denoting the rightmost bound */
 fun binarySearch(arr: IntArray, query: Int, left: Int, right: Int): Int{
     val middle: Int = (left + right)/2
 
