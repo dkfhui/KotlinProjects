@@ -36,15 +36,17 @@ fun mergeSort(arr: IntArray): IntArray {
 fun merge(left: IntArray, right: IntArray, length: Int): IntArray{
     var arr: IntArray = IntArray(length, {i->0})
     var leftIndex: Int = 0; var rightIndex: Int = 0; var arrIndex: Int = 0
-    var lsize = left.size; var rsize = right.size
     
     while(leftIndex < left.size && rightIndex < right.size){
         var l = left[leftIndex]
         var r = right[rightIndex]
-        if(left[leftIndex] <= right[rightIndex])
-            arr[arrIndex++] = left[leftIndex++]
-        else
-            arr[arrIndex++] = right[rightIndex++]
+
+	arr[arrIndex++] = if(left[leftIndex] <= right[rightIndex]){
+			  	left[leftIndex++]
+			  }
+			  else{
+			  	right[rightIndex++]
+                          }
     }
     
     if(leftIndex < left.size){    
@@ -75,7 +77,8 @@ fun test(){
 }
 
 /* Performs a binary search on sorted integer array arr for query with left
-   denoting the leftmost bound and right denoting the rightmost bound */
+   denoting the leftmost bound and right denoting the rightmost bound.
+   Returns the index of the query; otherwise returns -1 */
 fun binarySearch(arr: IntArray, query: Int, left: Int, right: Int): Int{
     val middle: Int = (left + right)/2
 
